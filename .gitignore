@@ -1,0 +1,84 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+.eslintcache
+
+# Build output
+dist/
+dist-ssr/
+.vite/
+build/
+out/
+.tmp/
+temp/
+tmp/
+
+# TypeScript
+*.tsbuildinfo
+
+# Vite/Dev server artifacts
+# (Vite also caches in node_modules/.vite which is covered by node_modules/)
+vite.svg
+
+# Environment files (keep .env.example tracked)
+.env
+.env.local
+.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Coverage / test reports
+coverage/
+.nyc_output/
+lcov.info
+.vitest/
+*.snap
+
+# Playwright (if used)
+playwright-report/
+test-results/
+.playwright/
+
+# Cypress (if used)
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# Vercel / Netlify
+.vercel/
+.netlify/
+
+# OS files
+.DS_Store
+.DS_Store?
+Thumbs.db
+ehthumbs.db
+Icon?
+
+# Editor/IDE
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Logs and locks
+logs/
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# Cache
+.cache/
+.parcel-cache/
+
+# Personal
+database/
