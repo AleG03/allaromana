@@ -41,11 +41,8 @@ jobs:
               const { createClient } = require('@supabase/supabase-js');
               const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
 
-              // Ping Supabase by querying PostgreSQL system table (always available)
-              const { data, error } = await supabase
-                .from('pg_stat_database')
-                .select('datname')
-                .limit(1);
+              // Execute a simple SQL query to keep database active
+              const { data, error } = await supabase.rpc('version');
 
               // Handle errors
               if (error) throw error;
