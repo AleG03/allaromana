@@ -21,7 +21,6 @@ tmp/
 *.tsbuildinfo
 
 # Vite/Dev server artifacts
-# (Vite also caches in node_modules/.vite which is covered by node_modules/)
 vite.svg
 
 # Environment files (keep .env.example tracked)
