@@ -1,0 +1,20 @@
+{
+    "functions": {
+        "api/group/index.ts": {
+            "runtime": "nodejs18.x"
+        },
+        "api/group/[id].ts": {
+            "runtime": "nodejs18.x"
+        }
+    },
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "/api/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/index.html"
+        }
+    ]
+}

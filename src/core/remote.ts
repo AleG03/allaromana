@@ -20,9 +20,19 @@ export async function createRemoteGroup(name: string, lang: Lang): Promise<Group
 }
 
 export async function fetchRemoteGroup(groupId: string): Promise<Group | null> {
-  const res = await fetch(`${API_BASE}/api/group/${encodeURIComponent(groupId)}`);
+  console.log('Fetching group:', groupId);
+  const url = `${API_BASE}/api/group/${encodeURIComponent(groupId)}`;
+  console.log('Request URL:', url);
+  
+  const res = await fetch(url);
+  console.log('Response status:', res.status);
+  
   if (res.status === 404) return null;
-  if (!res.ok) throw new Error(await res.text());
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error('API Error:', errorText);
+    throw new Error(errorText);
+  }
   return readJson(res) as Promise<Group>;
 }
 
