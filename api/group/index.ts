@@ -33,6 +33,7 @@ export default async function handler(req: any, res: any) {
       updatedAt: group.updated_at,
       members: [],
       expenses: [],
+      settlements: [],
       balances: [],
       version: group.version,
       lang: group.lang,

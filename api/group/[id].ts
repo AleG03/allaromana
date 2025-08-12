@@ -23,6 +23,15 @@ interface Settlement {
   amount: number;
 }
 
+interface SettlementRecord {
+  id: string;
+  from: string;
+  to: string;
+  amount: number;
+  date: string;
+  createdAt: string;
+}
+
 interface Balance {
   memberId: string;
   netBalance: number;
@@ -38,6 +47,7 @@ interface Group {
   updatedAt: string; // ISO
   members: Member[];
   expenses: Expense[];
+  settlements: SettlementRecord[];
   balances: Balance[];
   version: number;
   lang: Lang;
@@ -64,6 +74,7 @@ function computeBalances(group: Group): Balance[] {
 
   const add = (id: string, cents: number) => net.set(id, (net.get(id) || 0) + cents);
 
+  // Process expenses
   for (const exp of group.expenses) {
     const participants = exp.participants.length ? exp.participants : memberIds;
     const totalCents = toCents(exp.amount);
@@ -71,6 +82,13 @@ function computeBalances(group: Group): Balance[] {
 
     for (const pid of participants) add(pid, -(shares.get(pid) || 0));
     add(exp.paidBy, totalCents);
+  }
+
+  // Process settlements (recorded payments)
+  for (const settlement of group.settlements || []) {
+    const settlementCents = toCents(settlement.amount);
+    add(settlement.from, -settlementCents); // Person who paid reduces their debt
+    add(settlement.to, settlementCents); // Person who received increases their credit
   }
 
   const creditors: { id: string; cents: number }[] = [];
@@ -148,6 +166,14 @@ async function fetchGroupData(supabase: any, groupId: string) {
         expense_participants (
           member_id
         )
+      ),
+      settlements (
+        id,
+        from_member,
+        to_member,
+        amount_cents,
+        settlement_date,
+        created_at
       )
     `)
     .eq('id', groupId)
@@ -176,6 +202,15 @@ async function fetchGroupData(supabase: any, groupId: string) {
     isActive: member.is_active,
   }));
 
+  const settlements = (group.settlements || []).map((settlement: any) => ({
+    id: settlement.id,
+    from: settlement.from_member,
+    to: settlement.to_member,
+    amount: settlement.amount_cents / 100,
+    date: settlement.settlement_date,
+    createdAt: settlement.created_at,
+  }));
+
   const groupData: Group = {
     id: group.id,
     name: group.name,
@@ -183,6 +218,7 @@ async function fetchGroupData(supabase: any, groupId: string) {
     updatedAt: group.updated_at,
     members,
     expenses,
+    settlements,
     balances: [],
     version: group.version,
     lang: group.lang,
@@ -221,6 +257,16 @@ export default async function handler(req: any, res: any) {
         p_group_id: id,
         p_group_data: incoming
       });
+
+      if (error) throw error;
+      return res.status(200).json({ ok: true });
+    }
+
+    if (req.method === 'DELETE') {
+      const { error } = await supabase
+        .from('groups')
+        .delete()
+        .eq('id', id);
 
       if (error) throw error;
       return res.status(200).json({ ok: true });
