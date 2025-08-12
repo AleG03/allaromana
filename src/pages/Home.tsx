@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { createRemoteGroup } from '@/core/remote';
 import { t } from '@/core/i18n';
 import type { Lang } from '@/core/types';
+import RecentGroups from '@/components/RecentGroups';
 
 export default function Home() {
   const navigate = useNavigate();
@@ -38,6 +39,8 @@ export default function Home() {
 
       <h1>{t(lang, 'app.brand')}</h1>
       <p className="muted">{t(lang, 'app.tagline')}</p>
+
+      <RecentGroups lang={lang} />
 
       <div className="card">
         <h2>{t(lang, 'home.createTitle')}</h2>

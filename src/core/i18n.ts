@@ -62,6 +62,15 @@ const it: Dict = {
   'ui.goHome': 'Torna alla home',
   'ui.participantsCount': '{n} partecipanti',
   'ui.participantsSingle': '1 partecipante',
+
+  'home.recentTitle': 'Gruppi recenti',
+  'recent.today': 'oggi',
+  'recent.yesterday': 'ieri',
+  'recent.daysAgo': '{days} giorni fa',
+  'recent.remove': 'Rimuovi dai recenti',
+
+  'group.copyLink.success': 'Link copiato!',
+  'group.copyLink.shareMessage': 'Condividi questo link per invitare altri al gruppo',
 };
 
 const en: Dict = {
@@ -124,6 +133,15 @@ const en: Dict = {
   'ui.goHome': 'Go Home',
   'ui.participantsCount': '{n} participants',
   'ui.participantsSingle': '1 participant',
+
+  'home.recentTitle': 'Recent groups',
+  'recent.today': 'today',
+  'recent.yesterday': 'yesterday',
+  'recent.daysAgo': '{days} days ago',
+  'recent.remove': 'Remove from recent',
+
+  'group.copyLink.success': 'Link copied!',
+  'group.copyLink.shareMessage': 'Share this link to invite others to the group',
 };
 
 const dict: Record<Lang, Dict> = { it, en };

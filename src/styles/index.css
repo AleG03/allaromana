@@ -147,6 +147,11 @@
   input[type="checkbox"],
   input[type="radio"] { accent-color: var(--primary); }
   
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
   @media (max-width: 600px) {
     .item-col.right { align-items: flex-start; text-align: left; }
   }

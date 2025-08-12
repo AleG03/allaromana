@@ -4,9 +4,11 @@ import { computeBalances } from '@/core/calc';
 import MemberList from '@/components/MemberList';
 import ExpenseList from '@/components/ExpenseList';
 import BalanceSummary from '@/components/BalanceSummary';
+import CopyLinkButton from '@/components/CopyLinkButton';
 import type { Group, Lang } from '@/core/types';
 import { fetchRemoteGroup, saveRemoteGroup } from '@/core/remote';
 import { useI18n } from '@/core/i18n';
+import { addRecentGroup } from '@/utils/recentGroups';
 
 export default function GroupView() {
   const { groupId = '' } = useParams();
@@ -27,6 +29,8 @@ export default function GroupView() {
             const withBalances = { ...remote, balances: computeBalances(remote) } as Group;
             (withBalances as any).lang = (withBalances as any).lang ?? 'it';
             setGroup(withBalances);
+            // Add to recent groups
+            addRecentGroup(withBalances);
           } else {
             setGroup(null);
           }
@@ -102,9 +106,7 @@ export default function GroupView() {
             <button className={group.lang === 'it' ? 'active' : ''} aria-pressed={group.lang === 'it'} onClick={() => setLang('it')}>IT</button>
             <button className={group.lang === 'en' ? 'active' : ''} aria-pressed={group.lang === 'en'} onClick={() => setLang('en')}>EN</button>
           </div>
-          <button className="btn" onClick={() => { navigator.clipboard.writeText(location.href); alert(t('group.copyLink')); }}>
-            {t('group.copyLink')}
-          </button>
+          <CopyLinkButton lang={group.lang} />
           <Link to={`/group/${group.id}/add`} className="btn primary">{t('group.addExpense')}</Link>
         </div>
       </header>
