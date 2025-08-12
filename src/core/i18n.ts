@@ -14,7 +14,7 @@ const it: Dict = {
   'home.create': 'Crea',
   'home.lang': 'Lingua',
 
-  'group.copyLink': 'Copia link',
+  'group.shareGroup': 'Condividi gruppo',
   'group.addExpense': 'Aggiungi spesa',
   'group.loading': 'Caricamento…',
   'group.notFound': 'Gruppo non trovato',
@@ -69,8 +69,8 @@ const it: Dict = {
   'recent.daysAgo': '{days} giorni fa',
   'recent.remove': 'Rimuovi dai recenti',
 
-  'group.copyLink.success': 'Link copiato!',
-  'group.copyLink.shareMessage': 'Condividi questo link per invitare altri al gruppo',
+  'group.shareGroup.success': 'Link copiato!',
+  'group.shareGroup.shareMessage': 'Condividi questo link per invitare altri al gruppo',
 };
 
 const en: Dict = {
@@ -85,7 +85,7 @@ const en: Dict = {
   'home.create': 'Create',
   'home.lang': 'Language',
 
-  'group.copyLink': 'Copy link',
+  'group.shareGroup': 'Share group',
   'group.addExpense': 'Add expense',
   'group.loading': 'Loading…',
   'group.notFound': 'Group not found',
@@ -140,8 +140,8 @@ const en: Dict = {
   'recent.daysAgo': '{days} days ago',
   'recent.remove': 'Remove from recent',
 
-  'group.copyLink.success': 'Link copied!',
-  'group.copyLink.shareMessage': 'Share this link to invite others to the group',
+  'group.shareGroup.success': 'Link copied!',
+  'group.shareGroup.shareMessage': 'Share this link to invite others to the group',
 };
 
 const dict: Record<Lang, Dict> = { it, en };
