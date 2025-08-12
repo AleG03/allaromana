@@ -34,8 +34,8 @@ export function computeBalances(group: Group): Balance[] {
   // Process settlements (recorded payments)
   for (const settlement of group.settlements || []) {
     const settlementCents = toCents(settlement.amount);
-    add(settlement.from, -settlementCents); // Person who paid reduces their debt
-    add(settlement.to, settlementCents); // Person who received increases their credit
+    add(settlement.from, settlementCents); // Person who paid reduces their debt (becomes less negative)
+    add(settlement.to, -settlementCents); // Person who received reduces their credit (becomes less positive)
   }
 
   const creditors: { id: string; cents: number }[] = [];
