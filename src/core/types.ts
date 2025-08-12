@@ -20,6 +20,15 @@ export interface Member {
     to: string;
     amount: number;
   }
+
+  export interface SettlementRecord {
+    id: string;
+    from: string;
+    to: string;
+    amount: number;
+    date: string;
+    createdAt: string;
+  }
   
   export interface Balance {
     memberId: string;
@@ -36,6 +45,7 @@ export interface Member {
     updatedAt: string;
     members: Member[];
     expenses: Expense[];
+    settlements: SettlementRecord[];
     balances: Balance[];
     version: number;
     lang: Lang;

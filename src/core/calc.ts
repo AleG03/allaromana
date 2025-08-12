@@ -21,6 +21,7 @@ export function computeBalances(group: Group): Balance[] {
 
   const add = (id: string, cents: number) => net.set(id, (net.get(id) || 0) + cents);
 
+  // Process expenses
   for (const exp of group.expenses) {
     const participants = exp.participants.length ? exp.participants : memberIds;
     const totalCents = toCents(exp.amount);
@@ -28,6 +29,13 @@ export function computeBalances(group: Group): Balance[] {
 
     for (const pid of participants) add(pid, -(shares.get(pid) || 0));
     add(exp.paidBy, totalCents);
+  }
+
+  // Process settlements (recorded payments)
+  for (const settlement of group.settlements || []) {
+    const settlementCents = toCents(settlement.amount);
+    add(settlement.from, -settlementCents); // Person who paid reduces their debt
+    add(settlement.to, settlementCents); // Person who received increases their credit
   }
 
   const creditors: { id: string; cents: number }[] = [];

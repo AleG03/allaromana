@@ -5,6 +5,8 @@ import MemberList from '@/components/MemberList';
 import ExpenseList from '@/components/ExpenseList';
 import BalanceSummary from '@/components/BalanceSummary';
 import CopyLinkButton from '@/components/CopyLinkButton';
+import DeleteGroupButton from '@/components/DeleteGroupButton';
+import SettlementList from '@/components/SettlementList';
 import type { Group, Lang } from '@/core/types';
 import { fetchRemoteGroup, saveRemoteGroup } from '@/core/remote';
 import { useI18n } from '@/core/i18n';
@@ -28,6 +30,7 @@ export default function GroupView() {
           if (remote) {
             const withBalances = { ...remote, balances: computeBalances(remote) } as Group;
             (withBalances as any).lang = (withBalances as any).lang ?? 'it';
+            if (!withBalances.settlements) withBalances.settlements = [];
             setGroup(withBalances);
             // Add to recent groups
             addRecentGroup(withBalances);
@@ -107,12 +110,14 @@ export default function GroupView() {
             <button className={group.lang === 'en' ? 'active' : ''} aria-pressed={group.lang === 'en'} onClick={() => setLang('en')}>EN</button>
           </div>
           <CopyLinkButton lang={group.lang} />
+          <DeleteGroupButton groupId={group.id} lang={group.lang} />
           <Link to={`/group/${group.id}/add`} className="btn primary">{t('group.addExpense')}</Link>
         </div>
       </header>
 
       <MemberList group={group} onChange={onGroupChange} />
       <ExpenseList group={group} onChange={onGroupChange} />
+      <SettlementList group={group} onChange={onGroupChange} />
       <BalanceSummary group={group} balances={group.balances} />
     </div>
   );

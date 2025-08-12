@@ -71,6 +71,20 @@ const it: Dict = {
 
   'group.shareGroup.success': 'Link copiato!',
   'group.shareGroup.shareMessage': 'Condividi questo link per invitare altri al gruppo',
+  'group.deleteGroup': 'Elimina gruppo',
+  'group.deleteConfirm': 'Sei sicuro di voler eliminare questo gruppo? Questa azione non può essere annullata.',
+
+  'settlements.title': 'Pagamenti effettuati',
+  'settlements.none': 'Nessun pagamento registrato.',
+  'settlements.add': 'Registra pagamento',
+  'settlements.addTitle': 'Registra un pagamento',
+  'settlements.from': 'Da',
+  'settlements.to': 'A',
+  'settlements.amount': 'Importo',
+  'settlements.date': 'Data',
+  'settlements.record': 'Registra',
+  'settlements.delete': 'Elimina',
+  'settlements.paid': '{from} ha pagato {to} {amount}',
 };
 
 const en: Dict = {
@@ -142,6 +156,20 @@ const en: Dict = {
 
   'group.shareGroup.success': 'Link copied!',
   'group.shareGroup.shareMessage': 'Share this link to invite others to the group',
+  'group.deleteGroup': 'Delete group',
+  'group.deleteConfirm': 'Are you sure you want to delete this group? This action cannot be undone.',
+
+  'settlements.title': 'Recorded payments',
+  'settlements.none': 'No payments recorded.',
+  'settlements.add': 'Record payment',
+  'settlements.addTitle': 'Record a payment',
+  'settlements.from': 'From',
+  'settlements.to': 'To',
+  'settlements.amount': 'Amount',
+  'settlements.date': 'Date',
+  'settlements.record': 'Record',
+  'settlements.delete': 'Delete',
+  'settlements.paid': '{from} paid {to} {amount}',
 };
 
 const dict: Record<Lang, Dict> = { it, en };

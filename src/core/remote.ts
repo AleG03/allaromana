@@ -44,3 +44,10 @@ export async function saveRemoteGroup(group: Group): Promise<void> {
   });
   if (!res.ok) throw new Error(await res.text());
 }
+
+export async function deleteRemoteGroup(groupId: string): Promise<void> {
+  const res = await fetch(`${API_BASE}/api/group/${encodeURIComponent(groupId)}`, {
+    method: 'DELETE',
+  });
+  if (!res.ok) throw new Error(await res.text());
+}
