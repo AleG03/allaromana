@@ -50,6 +50,7 @@ export default function Home() {
             placeholder={t(lang, 'home.namePlaceholder')}
             value={name}
             onChange={e => setName(e.target.value)}
+            onKeyDown={e => e.key === 'Enter' && !busy && create()}
           />
           <button className="btn primary" onClick={create} disabled={busy}>
             {t(lang, 'home.create')}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useI18n } from '@/core/i18n';
 import type { Lang } from '@/core/types';
 
@@ -11,6 +11,8 @@ export default function CopyLinkButton({ lang, className = 'btn' }: CopyLinkButt
   const { t } = useI18n(lang);
   const [showPopup, setShowPopup] = useState(false);
   const [copiedLink, setCopiedLink] = useState('');
+  const popupRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   async function handleCopyLink() {
     try {
@@ -18,21 +20,38 @@ export default function CopyLinkButton({ lang, className = 'btn' }: CopyLinkButt
       await navigator.clipboard.writeText(currentLink);
       setCopiedLink(currentLink);
       setShowPopup(true);
-      setTimeout(() => setShowPopup(false), 3000);
     } catch (error) {
       // Fallback for browsers that don't support clipboard API
       alert(t('group.shareGroup.success'));
     }
   }
 
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (showPopup && 
+          popupRef.current && 
+          buttonRef.current &&
+          !popupRef.current.contains(event.target as Node) &&
+          !buttonRef.current.contains(event.target as Node)) {
+        setShowPopup(false);
+      }
+    }
+
+    if (showPopup) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [showPopup]);
+
   return (
     <div style={{ position: 'relative' }}>
-      <button className={className} onClick={handleCopyLink}>
+      <button ref={buttonRef} className={className} onClick={handleCopyLink}>
         {t('group.shareGroup')}
       </button>
       
       {showPopup && (
         <div 
+          ref={popupRef}
           className="copy-popup"
           style={{
             position: 'absolute',
