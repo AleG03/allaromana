@@ -1,6 +1,7 @@
 import type { Group } from '@/core/types';
 import { Link } from 'react-router-dom';
-import { formatDateISOToHuman, formatMoney } from '@/utils/format';
+import { formatMoney } from '@/utils/format';
+import { formatDateShort } from '@/utils/dateFormat';
 import { useI18n } from '@/core/i18n';
 
 export default function ExpenseList({
@@ -33,7 +34,7 @@ export default function ExpenseList({
                 <div className="item-col">
                   <div className="item-title">{e.description}</div>
                   <div className="item-sub">
-                    {formatDateISOToHuman(e.date, lang)} • {t('form.paidBy')} {payer} • {e.participants.length === 1 ? t('ui.participantsSingle') : t('ui.participantsCount', { n: e.participants.length })}
+                    {formatDateShort(e.date, lang)} • {t('form.paidBy')} {payer} • {e.participants.length === 1 ? t('ui.participantsSingle') : t('ui.participantsCount', { n: e.participants.length })}
                   </div>
                 </div>
                 <div className="item-col right">

@@ -86,6 +86,9 @@ const it: Dict = {
   'settlements.delete': 'Elimina',
   'settlements.settled': '{from} ha saldato {to} {amount}',
   'settlements.cannotSelfSettle': 'Non puoi saldare te stesso',
+
+  'timeline.title': 'Cronologia',
+  'timeline.noActivity': 'Nessuna attività. Aggiungi una spesa o registra un saldo!',
 };
 
 const en: Dict = {
@@ -172,6 +175,9 @@ const en: Dict = {
   'settlements.delete': 'Delete',
   'settlements.settled': '{from} settled {to} {amount}',
   'settlements.cannotSelfSettle': 'Cannot settle to yourself',
+
+  'timeline.title': 'Timeline',
+  'timeline.noActivity': 'No activity yet. Add an expense or record a settlement!',
 };
 
 const dict: Record<Lang, Dict> = { it, en };

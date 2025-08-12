@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { getRecentGroups, removeRecentGroup, type RecentGroup } from '@/utils/recentGroups';
 import { useI18n } from '@/core/i18n';
+import { formatDateShort } from '@/utils/dateFormat';
 import type { Lang } from '@/core/types';
 
 interface RecentGroupsProps {
@@ -32,7 +33,7 @@ export default function RecentGroups({ lang }: RecentGroupsProps) {
     if (diffDays === 0) return t('recent.today');
     if (diffDays === 1) return t('recent.yesterday');
     if (diffDays < 7) return t('recent.daysAgo', { days: diffDays });
-    return date.toLocaleDateString();
+    return formatDateShort(dateString, lang);
   }
 
   return (

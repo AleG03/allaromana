@@ -3,6 +3,7 @@ import { Link, useParams, useNavigate } from 'react-router-dom';
 import { fetchRemoteGroup, saveRemoteGroup } from '@/core/remote';
 import { computeBalances } from '@/core/calc';
 import { useI18n } from '@/core/i18n';
+import { getCurrentDateForInput } from '@/utils/dateFormat';
 import type { Group, SettlementRecord, Lang } from '@/core/types';
 
 export default function SettlementForm() {
@@ -17,7 +18,7 @@ export default function SettlementForm() {
   const [from, setFrom] = useState('');
   const [to, setTo] = useState('');
   const [amount, setAmount] = useState('');
-  const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
+  const [date, setDate] = useState(getCurrentDateForInput());
   
   const [errors, setErrors] = useState<Record<string, string>>({});
 

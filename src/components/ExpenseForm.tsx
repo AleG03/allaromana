@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import type { Expense, Group } from '@/core/types';
 import { isNonEmpty, isValidAmount, isValidISODate } from '@/core/validation';
 import { useI18n } from '@/core/i18n';
+import { getCurrentDateForInput } from '@/utils/dateFormat';
 
 export default function ExpenseForm({
   group,
@@ -23,7 +24,7 @@ export default function ExpenseForm({
 
   const [description, setDescription] = useState(initial?.description ?? '');
   const [amountStr, setAmountStr] = useState(initial ? String(initial.amount) : '');
-  const [date, setDate] = useState(initial?.date?.slice(0, 10) ?? new Date().toISOString().slice(0, 10));
+  const [date, setDate] = useState(initial?.date?.slice(0, 10) ?? getCurrentDateForInput());
   const [paidBy, setPaidBy] = useState(initial?.paidBy ?? (activeMembers[0]?.id || ''));
   const [participants, setParticipants] = useState<string[]>(initial?.participants ?? activeMembers.map(m => m.id));
   const [errors, setErrors] = useState<{ [k: string]: string }>({});

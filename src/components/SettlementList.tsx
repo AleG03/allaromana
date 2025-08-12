@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useI18n } from '@/core/i18n';
+import { formatDateShort } from '@/utils/dateFormat';
 import type { Group, SettlementRecord } from '@/core/types';
 
 interface SettlementListProps {
@@ -9,7 +10,7 @@ interface SettlementListProps {
 
 export default function SettlementList({ group, onChange }: SettlementListProps) {
   const { t } = useI18n(group.lang);
-  const settlements = group.settlements || [];
+  const settlements = [...(group.settlements || [])].sort((a, b) => b.date.localeCompare(a.date));
 
   function getMemberName(memberId: string): string {
     return group.members.find(m => m.id === memberId)?.name || 'Unknown';
@@ -22,9 +23,7 @@ export default function SettlementList({ group, onChange }: SettlementListProps)
     }).format(amount);
   }
 
-  function formatDate(dateString: string): string {
-    return new Date(dateString).toLocaleDateString();
-  }
+
 
   function deleteSettlement(settlementId: string) {
     if (!confirm(t('confirm.deleteExpense'))) return;
@@ -60,7 +59,7 @@ export default function SettlementList({ group, onChange }: SettlementListProps)
                   })}
                 </div>
                 <div className="item-sub">
-                  {formatDate(settlement.date)}
+                  {formatDateShort(settlement.date, group.lang)}
                 </div>
               </div>
               <div className="item-col right">
