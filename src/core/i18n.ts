@@ -74,17 +74,18 @@ const it: Dict = {
   'group.deleteGroup': 'Elimina gruppo',
   'group.deleteConfirm': 'Sei sicuro di voler eliminare questo gruppo? Questa azione non può essere annullata.',
 
-  'settlements.title': 'Pagamenti effettuati',
-  'settlements.none': 'Nessun pagamento registrato.',
-  'settlements.add': 'Registra pagamento',
-  'settlements.addTitle': 'Registra un pagamento',
+  'settlements.title': 'Saldati',
+  'settlements.none': 'Nessun saldo registrato.',
+  'settlements.add': 'Registra saldo',
+  'settlements.addTitle': 'Registra un saldo',
   'settlements.from': 'Da',
   'settlements.to': 'A',
   'settlements.amount': 'Importo',
   'settlements.date': 'Data',
   'settlements.record': 'Registra',
   'settlements.delete': 'Elimina',
-  'settlements.paid': '{from} ha pagato {to} {amount}',
+  'settlements.settled': '{from} ha saldato {to} {amount}',
+  'settlements.cannotSelfSettle': 'Non puoi saldare te stesso',
 };
 
 const en: Dict = {
@@ -159,17 +160,18 @@ const en: Dict = {
   'group.deleteGroup': 'Delete group',
   'group.deleteConfirm': 'Are you sure you want to delete this group? This action cannot be undone.',
 
-  'settlements.title': 'Recorded payments',
-  'settlements.none': 'No payments recorded.',
-  'settlements.add': 'Record payment',
-  'settlements.addTitle': 'Record a payment',
+  'settlements.title': 'Settled',
+  'settlements.none': 'No settlements recorded.',
+  'settlements.add': 'Record settlement',
+  'settlements.addTitle': 'Record a settlement',
   'settlements.from': 'From',
   'settlements.to': 'To',
   'settlements.amount': 'Amount',
   'settlements.date': 'Date',
   'settlements.record': 'Record',
   'settlements.delete': 'Delete',
-  'settlements.paid': '{from} paid {to} {amount}',
+  'settlements.settled': '{from} settled {to} {amount}',
+  'settlements.cannotSelfSettle': 'Cannot settle to yourself',
 };
 
 const dict: Record<Lang, Dict> = { it, en };

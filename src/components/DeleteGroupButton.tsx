@@ -32,14 +32,16 @@ export default function DeleteGroupButton({ groupId, lang }: DeleteGroupButtonPr
 
   return (
     <button
-      className="btn danger small"
+      className="btn small"
       onClick={handleDelete}
       disabled={deleting}
       title={t('group.deleteGroup')}
       style={{
         padding: '6px 8px',
         fontSize: '12px',
-        minWidth: 'auto'
+        minWidth: 'auto',
+        backgroundColor: '#ffffff',
+        border: '1px solid #e2e8f0'
       }}
     >
       🗑️

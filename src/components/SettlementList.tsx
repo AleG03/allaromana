@@ -53,7 +53,7 @@ export default function SettlementList({ group, onChange }: SettlementListProps)
             <li key={settlement.id} className="list-item">
               <div className="item-col">
                 <div className="item-title">
-                  {t('settlements.paid', {
+                  {t('settlements.settled', {
                     from: getMemberName(settlement.from),
                     to: getMemberName(settlement.to),
                     amount: formatAmount(settlement.amount)

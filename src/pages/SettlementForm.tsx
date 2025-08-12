@@ -56,7 +56,7 @@ export default function SettlementForm() {
     
     if (!from) newErrors.from = t('validation.paidBy');
     if (!to) newErrors.to = t('validation.paidBy');
-    if (from === to) newErrors.to = 'Cannot pay to yourself';
+    if (from === to) newErrors.to = t('settlements.cannotSelfSettle');
     
     const amountNum = parseFloat(amount.replace(',', '.'));
     if (!amount || isNaN(amountNum) || amountNum <= 0) {
@@ -84,17 +84,25 @@ export default function SettlementForm() {
         createdAt: new Date().toISOString(),
       };
 
+      console.log('Creating settlement:', settlement);
+
       const updated: Group = {
         ...group,
         settlements: [...(group.settlements || []), settlement],
-        balances: computeBalances(group),
         updatedAt: new Date().toISOString(),
         version: (group.version || 1) + 1,
       };
+      
+      // Compute balances with the new settlement included
+      updated.balances = computeBalances(updated);
+
+      console.log('Updated group with settlements:', updated.settlements);
+      console.log('New balances:', updated.balances);
 
       await saveRemoteGroup(updated);
       navigate(`/group/${groupId}`);
     } catch (e: any) {
+      console.error('Settlement save error:', e);
       alert(`Failed to save settlement: ${e.message || e}`);
     } finally {
       setSaving(false);
