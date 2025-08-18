@@ -4,6 +4,7 @@ import { fetchRemoteGroup, saveRemoteGroup } from '@/core/remote';
 import { computeBalances } from '@/core/calc';
 import { useI18n } from '@/core/i18n';
 import { getCurrentDateForInput } from '@/utils/dateFormat';
+import LoadingPage from '@/components/LoadingPage';
 import type { Group, SettlementRecord, Lang } from '@/core/types';
 
 export default function SettlementForm() {
@@ -110,8 +111,16 @@ export default function SettlementForm() {
     }
   }
 
-  if (loading) return <div className="container"><p className="muted">{t('group.loading')}</p></div>;
-  if (!group) return <div className="container"><p>Group not found</p></div>;
+  if (loading) return <LoadingPage lang={pageLang} message={t('group.loading')} />;
+  if (!group) return (
+    <div className="container">
+      <div className="card" style={{ textAlign: 'center' }}>
+        <h2>{t('group.notFound')}</h2>
+        <p className="muted">{t('group.notFound.desc')}</p>
+        <Link to="/" className="btn">{t('ui.goHome')}</Link>
+      </div>
+    </div>
+  );
 
   const activeMembers = group.members.filter(m => m.isActive);
 

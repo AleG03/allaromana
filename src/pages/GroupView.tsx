@@ -7,6 +7,7 @@ import BalanceSummary from '@/components/BalanceSummary';
 import CopyLinkButton from '@/components/CopyLinkButton';
 import DeleteGroupButton from '@/components/DeleteGroupButton';
 import SettlementList from '@/components/SettlementList';
+import LoadingPage from '@/components/LoadingPage';
 import type { Group, Lang } from '@/core/types';
 import { fetchRemoteGroup, saveRemoteGroup } from '@/core/remote';
 import { useI18n } from '@/core/i18n';
@@ -68,7 +69,7 @@ export default function GroupView() {
     try { await saveRemoteGroup(toSave); } catch (e: any) { alert(`Failed to save changes: ${e.message || e}`); }
   }
 
-  if (loading) return <div className="container"><p className="muted">{t('group.loading')}</p></div>;
+  if (loading) return <LoadingPage lang={pageLang} message={t('group.loading')} />;
   if (error) {
     return (
       <div className="container">
@@ -84,9 +85,11 @@ export default function GroupView() {
   if (!group) {
     return (
       <div className="container">
-        <h2>{t('group.notFound')}</h2>
-        <p className="muted">{t('group.notFound.desc')}</p>
-        <Link to="/" className="btn">{t('ui.goHome')}</Link>
+        <div className="card" style={{ textAlign: 'center' }}>
+          <h2>{t('group.notFound')}</h2>
+          <p className="muted">{t('group.notFound.desc')}</p>
+          <Link to="/" className="btn">{t('ui.goHome')}</Link>
+        </div>
       </div>
     );
   }

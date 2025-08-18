@@ -1,6 +1,7 @@
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ExpenseForm from '@/components/ExpenseForm';
+import LoadingSpinner from '@/components/LoadingSpinner';
 import type { Group, Expense } from '@/core/types';
 import { fetchRemoteGroup, saveRemoteGroup } from '@/core/remote';
 import { computeBalances } from '@/core/calc';
@@ -18,8 +19,9 @@ export default function ExpenseAdd() {
   if (!group) {
     return (
       <div className="container">
-        <h2>Group not found</h2>
-        <Link to="/" className="btn">Go Home</Link>
+        <div className="card">
+          <LoadingSpinner size="medium" />
+        </div>
       </div>
     );
   }
