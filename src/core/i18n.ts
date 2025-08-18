@@ -17,6 +17,7 @@ const it: Dict = {
   'group.shareGroup': 'Condividi gruppo',
   'group.addExpense': 'Aggiungi spesa',
   'group.loading': 'Caricamento…',
+  'ui.loading': 'Caricamento…',
   'group.notFound': 'Gruppo non trovato',
   'group.notFound.desc': 'Il link potrebbe essere errato o il gruppo è stato rimosso.',
 
@@ -106,6 +107,7 @@ const en: Dict = {
   'group.shareGroup': 'Share group',
   'group.addExpense': 'Add expense',
   'group.loading': 'Loading…',
+  'ui.loading': 'Loading…',
   'group.notFound': 'Group not found',
   'group.notFound.desc': 'The link may be wrong or the group was removed.',
 

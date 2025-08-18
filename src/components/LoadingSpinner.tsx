@@ -49,7 +49,7 @@ export default function LoadingSpinner({
         }}
       />
       <p className="muted" style={{ margin: 0, textAlign: 'center' }}>
-        {message || t('group.loading')}
+        {message || t('ui.loading')}
       </p>
     </div>
   );

@@ -27,7 +27,7 @@ export default function LoadingPage({
       <div className="card" style={{ textAlign: 'center' }}>
         <LoadingSpinner 
           lang={lang} 
-          message={message || t('group.loading')} 
+          message={message || t('ui.loading')} 
           size="large" 
         />
       </div>
