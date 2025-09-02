@@ -33,6 +33,10 @@ export default function ExpenseForm({
     setParticipants(prev => (prev.includes(id) ? prev.filter(x => x !== id) : [...prev, id]));
   }
 
+  function unselectAll() {
+    setParticipants([]);
+  }
+
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     const errs: { [k: string]: string } = {};
@@ -109,7 +113,10 @@ export default function ExpenseForm({
       </div>
 
       <div className="form-row">
-        <label>{t('form.participants')}</label>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <label style={{ margin: 0 }}>{t('form.participants')}</label>
+          <button type="button" className="link" onClick={unselectAll} style={{ marginLeft: 12 }}>{t('form.unselectAll')}</button>
+        </div>
         <div className="grid">
           {activeMembers.map(m => (
             <label key={m.id} className="checkbox">
