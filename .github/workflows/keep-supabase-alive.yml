@@ -22,7 +22,7 @@ jobs:
 
       # Step 3: Install Supabase Client
       - name: Install Supabase Client
-        run: npm install @supabase/supabase-js --force
+        run: npm install @supabase/supabase-js tslib --force
 
       # Step 4: Ping Supabase
       - name: Ping Supabase
