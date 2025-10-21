@@ -2,7 +2,7 @@ name: Keep Supabase Database Alive
 
 on:
   schedule:
-    - cron: "0 0 * * *" # Runs at 12:00 AM UTC every day
+    - cron: "0 * * * *" # Runs at 12:00 AM UTC every day
   workflow_dispatch: # Allows manual triggering from the GitHub UI
 
 jobs:
